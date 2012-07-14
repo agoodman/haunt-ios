@@ -13,14 +13,7 @@
 		7E78DF2E15B22D490082A66A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7E78DF2C15B22D490082A66A /* InfoPlist.strings */; };
 		7E78DF3015B22D490082A66A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E78DF2F15B22D490082A66A /* main.m */; };
 		7E78DF3415B22D490082A66A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E78DF3315B22D490082A66A /* AppDelegate.m */; };
-		7E78DF3715B22D490082A66A /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E78DF3615B22D490082A66A /* FirstViewController.m */; };
-		7E78DF3915B22D490082A66A /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E78DF3815B22D490082A66A /* first.png */; };
-		7E78DF3B15B22D490082A66A /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E78DF3A15B22D490082A66A /* first@2x.png */; };
-		7E78DF3E15B22D490082A66A /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E78DF3D15B22D490082A66A /* SecondViewController.m */; };
-		7E78DF4015B22D490082A66A /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E78DF3F15B22D490082A66A /* second.png */; };
-		7E78DF4215B22D490082A66A /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E78DF4115B22D490082A66A /* second@2x.png */; };
-		7E78DF4515B22D490082A66A /* FirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E78DF4315B22D490082A66A /* FirstViewController.xib */; };
-		7E78DF4815B22D490082A66A /* SecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E78DF4615B22D490082A66A /* SecondViewController.xib */; };
+		7E78DF5015B22DC90082A66A /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E78DF4F15B22DC90082A66A /* MainWindow.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,22 +21,13 @@
 		7E78DF2315B22D490082A66A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7E78DF2515B22D490082A66A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7E78DF2715B22D490082A66A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		7E78DF2B15B22D490082A66A /* Haunt-Info.plist */ = {isa = PBXFileReference; path = "Haunt-Info.plist"; sourceTree = "<group>"; };
+		7E78DF2B15B22D490082A66A /* Haunt-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Haunt-Info.plist"; sourceTree = "<group>"; };
 		7E78DF2D15B22D490082A66A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7E78DF2F15B22D490082A66A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		7E78DF3115B22D490082A66A /* Haunt-Prefix.pch */ = {isa = PBXFileReference; path = "Haunt-Prefix.pch"; sourceTree = "<group>"; };
-		7E78DF3215B22D490082A66A /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		7E78DF3115B22D490082A66A /* Haunt-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Haunt-Prefix.pch"; sourceTree = "<group>"; };
+		7E78DF3215B22D490082A66A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7E78DF3315B22D490082A66A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		7E78DF3515B22D490082A66A /* FirstViewController.h */ = {isa = PBXFileReference; path = FirstViewController.h; sourceTree = "<group>"; };
-		7E78DF3615B22D490082A66A /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
-		7E78DF3815B22D490082A66A /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
-		7E78DF3A15B22D490082A66A /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
-		7E78DF3C15B22D490082A66A /* SecondViewController.h */ = {isa = PBXFileReference; path = SecondViewController.h; sourceTree = "<group>"; };
-		7E78DF3D15B22D490082A66A /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
-		7E78DF3F15B22D490082A66A /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
-		7E78DF4115B22D490082A66A /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
-		7E78DF4415B22D490082A66A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FirstViewController.xib; sourceTree = "<group>"; };
-		7E78DF4715B22D490082A66A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SecondViewController.xib; sourceTree = "<group>"; };
+		7E78DF4F15B22DC90082A66A /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,18 +74,9 @@
 		7E78DF2915B22D490082A66A /* Haunt */ = {
 			isa = PBXGroup;
 			children = (
+				7E78DF4E15B22DB50082A66A /* Resources */,
 				7E78DF3215B22D490082A66A /* AppDelegate.h */,
 				7E78DF3315B22D490082A66A /* AppDelegate.m */,
-				7E78DF3515B22D490082A66A /* FirstViewController.h */,
-				7E78DF3615B22D490082A66A /* FirstViewController.m */,
-				7E78DF3815B22D490082A66A /* first.png */,
-				7E78DF3A15B22D490082A66A /* first@2x.png */,
-				7E78DF3C15B22D490082A66A /* SecondViewController.h */,
-				7E78DF3D15B22D490082A66A /* SecondViewController.m */,
-				7E78DF3F15B22D490082A66A /* second.png */,
-				7E78DF4115B22D490082A66A /* second@2x.png */,
-				7E78DF4315B22D490082A66A /* FirstViewController.xib */,
-				7E78DF4615B22D490082A66A /* SecondViewController.xib */,
 				7E78DF2A15B22D490082A66A /* Supporting Files */,
 			);
 			path = Haunt;
@@ -116,6 +91,14 @@
 				7E78DF3115B22D490082A66A /* Haunt-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7E78DF4E15B22DB50082A66A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7E78DF4F15B22DC90082A66A /* MainWindow.xib */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -169,12 +152,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E78DF2E15B22D490082A66A /* InfoPlist.strings in Resources */,
-				7E78DF3915B22D490082A66A /* first.png in Resources */,
-				7E78DF3B15B22D490082A66A /* first@2x.png in Resources */,
-				7E78DF4015B22D490082A66A /* second.png in Resources */,
-				7E78DF4215B22D490082A66A /* second@2x.png in Resources */,
-				7E78DF4515B22D490082A66A /* FirstViewController.xib in Resources */,
-				7E78DF4815B22D490082A66A /* SecondViewController.xib in Resources */,
+				7E78DF5015B22DC90082A66A /* MainWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,8 +165,6 @@
 			files = (
 				7E78DF3015B22D490082A66A /* main.m in Sources */,
 				7E78DF3415B22D490082A66A /* AppDelegate.m in Sources */,
-				7E78DF3715B22D490082A66A /* FirstViewController.m in Sources */,
-				7E78DF3E15B22D490082A66A /* SecondViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,22 +177,6 @@
 				7E78DF2D15B22D490082A66A /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		7E78DF4315B22D490082A66A /* FirstViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7E78DF4415B22D490082A66A /* en */,
-			);
-			name = FirstViewController.xib;
-			sourceTree = "<group>";
-		};
-		7E78DF4615B22D490082A66A /* SecondViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7E78DF4715B22D490082A66A /* en */,
-			);
-			name = SecondViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
