@@ -13,9 +13,92 @@
 
 @synthesize window = _window;
 @synthesize tabBarController = _tabBarController;
+@synthesize locationManager = _locationManager;
+
+- (void)configureLocationManager
+{
+    if( [CLLocationManager regionMonitoringAvailable] && 
+       [CLLocationManager regionMonitoringEnabled] && 
+       [CLLocationManager locationServicesEnabled] ) 
+    {
+        if( self.locationManager.monitoredRegions.count==0 ) {
+            // not currently monitoring; establish region
+            [self establishGeoFence];
+        }
+    }else{
+        [self alertLocationRequired];
+    }
+}
+
+- (void)establishGeoFence
+{
+    if( self.locationManager.location==nil ) {
+        NSLog(@"startMonitoringLocation");
+        [self.locationManager startMonitoringSignificantLocationChanges];
+    }else{
+        CLRegion* tRegion = [[CLRegion alloc] initCircularRegionWithCenter:self.locationManager.location.coordinate     radius:800 identifier:@"Haunt"];
+        NSLog(@"establishGeoFence: %@",tRegion);
+        [self.locationManager startMonitoringForRegion:tRegion desiredAccuracy:50];
+        
+        // TODO: post a waypoint
+        NSLog(@"post waypoint");
+    }
+}
+
+- (void)alertLocationRequired
+{
+    async_main(^{
+        Alert(@"Location Services Required", @"Please enable location services");
+    });
+}
+
+#pragma mark - CLLocationManagerDelegate
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+    NSLog(@"didUpdateToLocation: %@",newLocation);
+    [manager stopUpdatingLocation];
+    [self establishGeoFence];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+    NSLog(@"didFailWithError: %@",error);
+    [manager stopUpdatingLocation];
+    if( [error code]==kCLErrorDenied ) {
+        [self alertLocationRequired];
+    }
+}
+
+- (void)locationManager:(CLLocationManager *)manager didStartMonitoringForRegion:(CLRegion *)region
+{
+    NSLog(@"didStartMonitoringRegion: %@",region);
+}
+
+- (void)locationManager:(CLLocationManager *)manager monitoringDidFailForRegion:(CLRegion *)region withError:(NSError *)error
+{
+    [manager stopMonitoringForRegion:region];
+    async_main(^{
+        Alert(@"Configuration Failed", @"Unable to configure location services");
+    });
+}
+
+- (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region
+{
+    NSLog(@"didExitRegion: %@",region);
+    [manager stopMonitoringForRegion:region];
+    [self establishGeoFence];
+}
+
+#pragma mark -
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    self.locationManager = [CLLocationManager new];
+    self.locationManager.delegate = self;
+    
+    [self configureLocationManager];
+    
     [self.window addSubview:self.tabBarController.view];
     [self.window makeKeyAndVisible];
     return YES;

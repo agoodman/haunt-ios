@@ -14,6 +14,7 @@
 		7E78DF3015B22D490082A66A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E78DF2F15B22D490082A66A /* main.m */; };
 		7E78DF3415B22D490082A66A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E78DF3315B22D490082A66A /* AppDelegate.m */; };
 		7E78DF5015B22DC90082A66A /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E78DF4F15B22DC90082A66A /* MainWindow.xib */; };
+		7E78DF5215B230250082A66A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E78DF5115B230250082A66A /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		7E78DF3215B22D490082A66A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7E78DF3315B22D490082A66A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		7E78DF4F15B22DC90082A66A /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		7E78DF5115B230250082A66A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E78DF5215B230250082A66A /* CoreLocation.framework in Frameworks */,
 				7E78DF2415B22D490082A66A /* UIKit.framework in Frameworks */,
 				7E78DF2615B22D490082A66A /* Foundation.framework in Frameworks */,
 				7E78DF2815B22D490082A66A /* CoreGraphics.framework in Frameworks */,
@@ -64,6 +67,7 @@
 		7E78DF2215B22D490082A66A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7E78DF5115B230250082A66A /* CoreLocation.framework */,
 				7E78DF2315B22D490082A66A /* UIKit.framework */,
 				7E78DF2515B22D490082A66A /* Foundation.framework */,
 				7E78DF2715B22D490082A66A /* CoreGraphics.framework */,
@@ -268,6 +272,7 @@
 				7E78DF4D15B22D490082A66A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
