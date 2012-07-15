@@ -26,6 +26,8 @@
         if( self.locationManager.monitoredRegions.count==0 ) {
             // not currently monitoring; establish region
             [self establishGeoFence];
+        }else{
+            NSLog(@"region already configured");
         }
     }else{
         [self alertLocationRequired];
@@ -194,6 +196,9 @@
 - (void)objectLoader:(RKObjectLoader *)objectLoader didLoadObject:(id)object
 {
     NSLog(@"waypoint posted: %@",object);
+    async_main(^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"WaypointCreated" object:nil];
+    });
 }
 
 @end

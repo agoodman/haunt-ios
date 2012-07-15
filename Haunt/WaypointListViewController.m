@@ -33,6 +33,8 @@
     [self refreshWaypoints];
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshWaypoints)];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshWaypoints) name:@"WaypointCreated" object:nil];
 }
 
 - (void)viewDidUnload
