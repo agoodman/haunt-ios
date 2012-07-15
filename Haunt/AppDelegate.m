@@ -63,6 +63,17 @@
     });
 }
 
+- (void)tokenAssigned
+{
+    [self initObjectManager];
+    [self initObjectMappings];
+    
+    self.locationManager = [CLLocationManager new];
+    self.locationManager.delegate = self;
+    
+    [self configureLocationManager];
+}
+
 - (void)initObjectManager
 {
 //	RKObjectManager* tMgr = [RKObjectManager objectManagerWithBaseURL:@"https://haunt.heroku.com"];
@@ -130,16 +141,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-#warning TODO retrieve token from push notif system
-    self.token = @"abc123";
-    [self initObjectManager];
-    [self initObjectMappings];
-    
-    self.locationManager = [CLLocationManager new];
-    self.locationManager.delegate = self;
-    
-    [self configureLocationManager];
-    
+    [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert];
+        
     [self.window addSubview:self.tabBarController.view];
     [self.window makeKeyAndVisible];
     return YES;
@@ -185,6 +188,29 @@
 {
 }
 */
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    self.token = [[NSString alloc] initWithData:deviceToken encoding:NSUTF8StringEncoding];
+    
+    async_main(^{
+        [self tokenAssigned];
+    });
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
+{
+    if( [error code]==3010 ) {
+        self.token = @"abc123";
+        async_main(^{
+            [self tokenAssigned];
+        });
+    }else{
+        async_main(^{
+            Alert(@"Notifications Required", [error localizedDescription]);
+        });
+    }
+}
 
 #pragma mark - RKObjectLoaderDelegate
 
