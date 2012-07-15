@@ -13,6 +13,8 @@
     #import <Foundation/Foundation.h>
 #endif
 
+#import <RestKit/RestKit.h>
+
 #define Alert(tTitle,tMsg) [[[UIAlertView alloc] initWithTitle:tTitle message:tMsg delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK",nil] show];
 
 #define async_main(aBlock) dispatch_async(dispatch_get_main_queue(),aBlock);

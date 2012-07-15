@@ -10,12 +10,14 @@
 #import <CoreLocation/CoreLocation.h>
 
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate, CLLocationManagerDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate, CLLocationManagerDelegate,RKObjectLoaderDelegate>
 
 @property (strong, nonatomic) IBOutlet UIWindow *window;
 
 @property (strong, nonatomic) IBOutlet UITabBarController *tabBarController;
 
 @property (strong, nonatomic) CLLocationManager* locationManager;
+
+@property (strong, nonatomic) NSString* token;
 
 @end

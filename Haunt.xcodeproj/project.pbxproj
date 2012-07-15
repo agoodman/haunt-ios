@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E3CBD8815B23D5C004986C4 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E3CBD8215B23D5C004986C4 /* AVFoundation.framework */; };
+		7E3CBD8915B23D5C004986C4 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E3CBD8315B23D5C004986C4 /* libxml2.dylib */; };
+		7E3CBD8A15B23D5C004986C4 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E3CBD8415B23D5C004986C4 /* MobileCoreServices.framework */; };
+		7E3CBD8B15B23D5C004986C4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E3CBD8515B23D5C004986C4 /* QuartzCore.framework */; };
+		7E3CBD8C15B23D5C004986C4 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E3CBD8615B23D5C004986C4 /* Security.framework */; };
+		7E3CBD8D15B23D5C004986C4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E3CBD8715B23D5C004986C4 /* SystemConfiguration.framework */; };
+		7E3CBD9015B23D6C004986C4 /* libRestKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E3CBD6C15B23CE2004986C4 /* libRestKit.a */; };
+		7E3CBD9215B23DCE004986C4 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E3CBD9115B23DCE004986C4 /* CoreData.framework */; };
+		7E3CBDAA15B23E15004986C4 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E3CBDA915B23E15004986C4 /* CFNetwork.framework */; };
+		7E3CBDAE15B23E4C004986C4 /* Waypoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E3CBDAD15B23E4C004986C4 /* Waypoint.m */; };
+		7E3CBDB115B23EF0004986C4 /* WaypointListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E3CBDB015B23EF0004986C4 /* WaypointListViewController.m */; };
+		7E3CBDB315B23EFD004986C4 /* WaypointListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E3CBDB215B23EFD004986C4 /* WaypointListView.xib */; };
 		7E78DF2415B22D490082A66A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E78DF2315B22D490082A66A /* UIKit.framework */; };
 		7E78DF2615B22D490082A66A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E78DF2515B22D490082A66A /* Foundation.framework */; };
 		7E78DF2815B22D490082A66A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E78DF2715B22D490082A66A /* CoreGraphics.framework */; };
@@ -17,7 +29,66 @@
 		7E78DF5215B230250082A66A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E78DF5115B230250082A66A /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		7E3CBD6B15B23CE2004986C4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7E3CBD6015B23CE1004986C4 /* RestKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 25160D1614564E810060A5C5;
+			remoteInfo = RestKit;
+		};
+		7E3CBD6D15B23CE2004986C4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7E3CBD6015B23CE1004986C4 /* RestKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 25160D2614564E820060A5C5;
+			remoteInfo = RestKitTests;
+		};
+		7E3CBD6F15B23CE2004986C4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7E3CBD6015B23CE1004986C4 /* RestKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 25160E62145651060060A5C5;
+			remoteInfo = RestKitFramework;
+		};
+		7E3CBD7115B23CE2004986C4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7E3CBD6015B23CE1004986C4 /* RestKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 25160E78145651060060A5C5;
+			remoteInfo = RestKitFrameworkTests;
+		};
+		7E3CBD7315B23CE2004986C4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7E3CBD6015B23CE1004986C4 /* RestKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 259C301615128079003066A2;
+			remoteInfo = RestKitResources;
+		};
+		7E3CBD8E15B23D68004986C4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7E3CBD6015B23CE1004986C4 /* RestKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 25160D1514564E810060A5C5;
+			remoteInfo = RestKit;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		7E3CBD6015B23CE1004986C4 /* RestKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RestKit.xcodeproj; path = RestKit/RestKit.xcodeproj; sourceTree = "<group>"; };
+		7E3CBD8215B23D5C004986C4 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		7E3CBD8315B23D5C004986C4 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		7E3CBD8415B23D5C004986C4 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		7E3CBD8515B23D5C004986C4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		7E3CBD8615B23D5C004986C4 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		7E3CBD8715B23D5C004986C4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		7E3CBD9115B23DCE004986C4 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		7E3CBDA915B23E15004986C4 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		7E3CBDAC15B23E4C004986C4 /* Waypoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Waypoint.h; sourceTree = "<group>"; };
+		7E3CBDAD15B23E4C004986C4 /* Waypoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Waypoint.m; sourceTree = "<group>"; };
+		7E3CBDAF15B23EF0004986C4 /* WaypointListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointListViewController.h; sourceTree = "<group>"; };
+		7E3CBDB015B23EF0004986C4 /* WaypointListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointListViewController.m; sourceTree = "<group>"; };
+		7E3CBDB215B23EFD004986C4 /* WaypointListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WaypointListView.xib; sourceTree = "<group>"; };
 		7E78DF1F15B22D490082A66A /* Haunt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Haunt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E78DF2315B22D490082A66A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7E78DF2515B22D490082A66A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -37,6 +108,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E3CBDAA15B23E15004986C4 /* CFNetwork.framework in Frameworks */,
+				7E3CBD9215B23DCE004986C4 /* CoreData.framework in Frameworks */,
+				7E3CBD9015B23D6C004986C4 /* libRestKit.a in Frameworks */,
+				7E3CBD8815B23D5C004986C4 /* AVFoundation.framework in Frameworks */,
+				7E3CBD8915B23D5C004986C4 /* libxml2.dylib in Frameworks */,
+				7E3CBD8A15B23D5C004986C4 /* MobileCoreServices.framework in Frameworks */,
+				7E3CBD8B15B23D5C004986C4 /* QuartzCore.framework in Frameworks */,
+				7E3CBD8C15B23D5C004986C4 /* Security.framework in Frameworks */,
+				7E3CBD8D15B23D5C004986C4 /* SystemConfiguration.framework in Frameworks */,
 				7E78DF5215B230250082A66A /* CoreLocation.framework in Frameworks */,
 				7E78DF2415B22D490082A66A /* UIKit.framework in Frameworks */,
 				7E78DF2615B22D490082A66A /* Foundation.framework in Frameworks */,
@@ -47,9 +127,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7E3CBD6115B23CE1004986C4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7E3CBD6C15B23CE2004986C4 /* libRestKit.a */,
+				7E3CBD6E15B23CE2004986C4 /* RestKitTests.octest */,
+				7E3CBD7015B23CE2004986C4 /* RestKit.framework */,
+				7E3CBD7215B23CE2004986C4 /* RestKitFrameworkTests.octest */,
+				7E3CBD7415B23CE2004986C4 /* RestKitResources.bundle */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7E3CBDAB15B23E26004986C4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7E3CBDAC15B23E4C004986C4 /* Waypoint.h */,
+				7E3CBDAD15B23E4C004986C4 /* Waypoint.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		7E78DF1415B22D490082A66A = {
 			isa = PBXGroup;
 			children = (
+				7E3CBD6015B23CE1004986C4 /* RestKit.xcodeproj */,
 				7E78DF2915B22D490082A66A /* Haunt */,
 				7E78DF2215B22D490082A66A /* Frameworks */,
 				7E78DF2015B22D490082A66A /* Products */,
@@ -67,6 +169,14 @@
 		7E78DF2215B22D490082A66A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7E3CBDA915B23E15004986C4 /* CFNetwork.framework */,
+				7E3CBD9115B23DCE004986C4 /* CoreData.framework */,
+				7E3CBD8215B23D5C004986C4 /* AVFoundation.framework */,
+				7E3CBD8315B23D5C004986C4 /* libxml2.dylib */,
+				7E3CBD8415B23D5C004986C4 /* MobileCoreServices.framework */,
+				7E3CBD8515B23D5C004986C4 /* QuartzCore.framework */,
+				7E3CBD8615B23D5C004986C4 /* Security.framework */,
+				7E3CBD8715B23D5C004986C4 /* SystemConfiguration.framework */,
 				7E78DF5115B230250082A66A /* CoreLocation.framework */,
 				7E78DF2315B22D490082A66A /* UIKit.framework */,
 				7E78DF2515B22D490082A66A /* Foundation.framework */,
@@ -78,10 +188,13 @@
 		7E78DF2915B22D490082A66A /* Haunt */ = {
 			isa = PBXGroup;
 			children = (
+				7E3CBDAB15B23E26004986C4 /* Models */,
 				7E78DF4E15B22DB50082A66A /* Resources */,
 				7E78DF3215B22D490082A66A /* AppDelegate.h */,
 				7E78DF3315B22D490082A66A /* AppDelegate.m */,
 				7E78DF2A15B22D490082A66A /* Supporting Files */,
+				7E3CBDAF15B23EF0004986C4 /* WaypointListViewController.h */,
+				7E3CBDB015B23EF0004986C4 /* WaypointListViewController.m */,
 			);
 			path = Haunt;
 			sourceTree = "<group>";
@@ -101,6 +214,7 @@
 			isa = PBXGroup;
 			children = (
 				7E78DF4F15B22DC90082A66A /* MainWindow.xib */,
+				7E3CBDB215B23EFD004986C4 /* WaypointListView.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -119,6 +233,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				7E3CBD8F15B23D68004986C4 /* PBXTargetDependency */,
 			);
 			name = Haunt;
 			productName = Haunt;
@@ -143,12 +258,56 @@
 			mainGroup = 7E78DF1415B22D490082A66A;
 			productRefGroup = 7E78DF2015B22D490082A66A /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 7E3CBD6115B23CE1004986C4 /* Products */;
+					ProjectRef = 7E3CBD6015B23CE1004986C4 /* RestKit.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				7E78DF1E15B22D490082A66A /* Haunt */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		7E3CBD6C15B23CE2004986C4 /* libRestKit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRestKit.a;
+			remoteRef = 7E3CBD6B15B23CE2004986C4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7E3CBD6E15B23CE2004986C4 /* RestKitTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = RestKitTests.octest;
+			remoteRef = 7E3CBD6D15B23CE2004986C4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7E3CBD7015B23CE2004986C4 /* RestKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = RestKit.framework;
+			remoteRef = 7E3CBD6F15B23CE2004986C4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7E3CBD7215B23CE2004986C4 /* RestKitFrameworkTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = RestKitFrameworkTests.octest;
+			remoteRef = 7E3CBD7115B23CE2004986C4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7E3CBD7415B23CE2004986C4 /* RestKitResources.bundle */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = RestKitResources.bundle;
+			remoteRef = 7E3CBD7315B23CE2004986C4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		7E78DF1D15B22D490082A66A /* Resources */ = {
@@ -157,6 +316,7 @@
 			files = (
 				7E78DF2E15B22D490082A66A /* InfoPlist.strings in Resources */,
 				7E78DF5015B22DC90082A66A /* MainWindow.xib in Resources */,
+				7E3CBDB315B23EFD004986C4 /* WaypointListView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,10 +329,20 @@
 			files = (
 				7E78DF3015B22D490082A66A /* main.m in Sources */,
 				7E78DF3415B22D490082A66A /* AppDelegate.m in Sources */,
+				7E3CBDAE15B23E4C004986C4 /* Waypoint.m in Sources */,
+				7E3CBDB115B23EF0004986C4 /* WaypointListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7E3CBD8F15B23D68004986C4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = RestKit;
+			targetProxy = 7E3CBD8E15B23D68004986C4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		7E78DF2C15B22D490082A66A /* InfoPlist.strings */ = {
@@ -236,7 +406,12 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Haunt/Haunt-Prefix.pch";
+				HEADER_SEARCH_PATHS = "\"$(BUILT_PRODUCTS_DIR)/../../Headers\"";
 				INFOPLIST_FILE = "Haunt/Haunt-Info.plist";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -247,7 +422,12 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Haunt/Haunt-Prefix.pch";
+				HEADER_SEARCH_PATHS = "\"$(BUILT_PRODUCTS_DIR)/../../Headers\"";
 				INFOPLIST_FILE = "Haunt/Haunt-Info.plist";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

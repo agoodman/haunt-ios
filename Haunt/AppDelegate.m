@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "Waypoint.h"
 
 
 @implementation AppDelegate
@@ -14,6 +15,7 @@
 @synthesize window = _window;
 @synthesize tabBarController = _tabBarController;
 @synthesize locationManager = _locationManager;
+@synthesize token = _token;
 
 - (void)configureLocationManager
 {
@@ -40,9 +42,16 @@
         NSLog(@"establishGeoFence: %@",tRegion);
         [self.locationManager startMonitoringForRegion:tRegion desiredAccuracy:50];
         
-        // TODO: post a waypoint
-        NSLog(@"post waypoint");
+        [self postWaypoint:tRegion.center];
     }
+}
+
+- (void)postWaypoint:(CLLocationCoordinate2D)aCoordinate
+{
+    Waypoint* tWaypoint = [Waypoint new];
+    tWaypoint.lat = [NSNumber numberWithFloat:aCoordinate.latitude];
+    tWaypoint.lng = [NSNumber numberWithFloat:aCoordinate.longitude];
+    [[RKObjectManager sharedManager] postObject:tWaypoint delegate:self];
 }
 
 - (void)alertLocationRequired
@@ -50,6 +59,31 @@
     async_main(^{
         Alert(@"Location Services Required", @"Please enable location services");
     });
+}
+
+- (void)initObjectManager
+{
+//	RKObjectManager* tMgr = [RKObjectManager objectManagerWithBaseURL:@"https://haunt.heroku.com"];
+    RKObjectManager* tMgr = [RKObjectManager objectManagerWithBaseURLString:@"http://local:3000"];
+    tMgr.serializationMIMEType = RKMIMETypeJSON;
+}
+
+- (void)initObjectMappings
+{
+    RKObjectManager* tMgr = [RKObjectManager sharedManager];
+    
+    RKObjectMapping* tMapping = [RKObjectMapping mappingForClass:[Waypoint class]];
+    [tMapping mapKeyPath:@"lat" toAttribute:@"lat"];
+    [tMapping mapKeyPath:@"lng" toAttribute:@"lng"];
+    [tMgr.mappingProvider setMapping:tMapping forKeyPath:@"waypoint"];
+    
+    RKObjectMapping* tSerial = [RKObjectMapping mappingForClass:[Waypoint class]];
+    [tSerial mapKeyPath:@"lat" toAttribute:@"lat"];
+    [tSerial mapKeyPath:@"lng" toAttribute:@"lng"];
+    tSerial.rootKeyPath = @"waypoint";
+    [tMgr.mappingProvider setSerializationMapping:tSerial forClass:[Waypoint class]];
+    
+    [tMgr.router routeClass:[Waypoint class] toResourcePath:[NSString stringWithFormat:@"/devices/%@/waypoints",self.token] forMethod:RKRequestMethodPOST];
 }
 
 #pragma mark - CLLocationManagerDelegate
@@ -94,6 +128,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+#warning TODO retrieve token from push notif system
+    self.token = @"abc123";
+    [self initObjectManager];
+    [self initObjectMappings];
+    
     self.locationManager = [CLLocationManager new];
     self.locationManager.delegate = self;
     
@@ -144,5 +183,17 @@
 {
 }
 */
+
+#pragma mark - RKObjectLoaderDelegate
+
+- (void)objectLoader:(RKObjectLoader *)objectLoader didFailWithError:(NSError *)error
+{
+    NSLog(@"failed to post waypoint: %@",[error localizedDescription]);
+}
+
+- (void)objectLoader:(RKObjectLoader *)objectLoader didLoadObject:(id)object
+{
+    NSLog(@"waypoint posted: %@",object);
+}
 
 @end
