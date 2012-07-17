@@ -13,12 +13,14 @@
     NSNumber* waypointId;
     NSNumber* lat;
     NSNumber* lng;
+    NSDate* measuredAt;
     
 }
 
 @property (strong) NSNumber* waypointId;
 @property (strong) NSNumber* lat;
 @property (strong) NSNumber* lng;
+@property (strong) NSDate* measuredAt;
 
 
 @end

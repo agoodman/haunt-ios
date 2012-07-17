@@ -28,6 +28,9 @@
             [self establishGeoFence];
         }else{
             NSLog(@"region already configured");
+            async_main(^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"WaypointCreated" object:nil];
+            });
         }
     }else{
         [self alertLocationRequired];
@@ -53,6 +56,7 @@
     Waypoint* tWaypoint = [Waypoint new];
     tWaypoint.lat = [NSNumber numberWithFloat:aCoordinate.latitude];
     tWaypoint.lng = [NSNumber numberWithFloat:aCoordinate.longitude];
+    tWaypoint.measuredAt = [NSDate date];
     [[RKObjectManager sharedManager] postObject:tWaypoint delegate:self];
 }
 
@@ -65,7 +69,7 @@
 
 - (void)tokenAssigned
 {
-    [self initObjectManager];
+    [self initObjectManagerWithToken:self.token];
     [self initObjectMappings];
     
     self.locationManager = [CLLocationManager new];
@@ -74,10 +78,12 @@
     [self configureLocationManager];
 }
 
-- (void)initObjectManager
+- (void)initObjectManagerWithToken:(NSString*)aToken
 {
-//	RKObjectManager* tMgr = [RKObjectManager objectManagerWithBaseURL:@"https://haunt.heroku.com"];
-    RKObjectManager* tMgr = [RKObjectManager objectManagerWithBaseURLString:@"http://local:3000"];
+    NSString* tHost = @"https://haunt.herokuapp.com";
+//    NSString* tHost = @"http://local:3000";
+    NSString* tPath = [NSString stringWithFormat:@"%@/devices/%@",tHost,aToken];
+	RKObjectManager* tMgr = [RKObjectManager objectManagerWithBaseURLString:tPath];
     tMgr.serializationMIMEType = RKMIMETypeJSON;
 }
 
@@ -88,15 +94,27 @@
     RKObjectMapping* tMapping = [RKObjectMapping mappingForClass:[Waypoint class]];
     [tMapping mapKeyPath:@"lat" toAttribute:@"lat"];
     [tMapping mapKeyPath:@"lng" toAttribute:@"lng"];
+    [tMapping mapKeyPath:@"measured_at" toAttribute:@"measuredAt"];
     [tMgr.mappingProvider setMapping:tMapping forKeyPath:@"waypoint"];
     
     RKObjectMapping* tSerial = [RKObjectMapping mappingForClass:[Waypoint class]];
     [tSerial mapKeyPath:@"lat" toAttribute:@"lat"];
     [tSerial mapKeyPath:@"lng" toAttribute:@"lng"];
+    [tSerial mapKeyPath:@"measuredAt" toAttribute:@"measured_at"];
     tSerial.rootKeyPath = @"waypoint";
     [tMgr.mappingProvider setSerializationMapping:tSerial forClass:[Waypoint class]];
     
-    [tMgr.router routeClass:[Waypoint class] toResourcePath:[NSString stringWithFormat:@"/devices/%@/waypoints",self.token] forMethod:RKRequestMethodPOST];
+    [tMgr.router routeClass:[Waypoint class] toResourcePath:@"/waypoints" forMethod:RKRequestMethodPOST];
+}
+
+- (void)haunt
+{
+    [self establishGeoFence];
+}
+
+- (void)exorcise
+{
+    [self.locationManager stopMonitoringForRegion:[self.locationManager.monitoredRegions anyObject]];
 }
 
 #pragma mark - CLLocationManagerDelegate
@@ -141,8 +159,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert];
+    [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound];
         
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(haunt) name:@"Haunt" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(exorcise) name:@"Exorcise" object:nil];
+    
     [self.window addSubview:self.tabBarController.view];
     [self.window makeKeyAndVisible];
     return YES;
@@ -191,7 +212,8 @@
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
-    self.token = [[NSString alloc] initWithData:deviceToken encoding:NSUTF8StringEncoding];
+    NSString* tRaw = [deviceToken description];
+    self.token = [[[tRaw stringByReplacingOccurrencesOfString:@"<" withString:@""] stringByReplacingOccurrencesOfString:@">" withString:@""] stringByReplacingOccurrencesOfString:@" " withString:@""];
     
     async_main(^{
         [self tokenAssigned];

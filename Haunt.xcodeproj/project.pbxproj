@@ -27,6 +27,14 @@
 		7E78DF3415B22D490082A66A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E78DF3315B22D490082A66A /* AppDelegate.m */; };
 		7E78DF5015B22DC90082A66A /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E78DF4F15B22DC90082A66A /* MainWindow.xib */; };
 		7E78DF5215B230250082A66A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E78DF5115B230250082A66A /* CoreLocation.framework */; };
+		7EC085BB15B4FF2400F2CA31 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 7EC085B715B4FF2400F2CA31 /* iTunesArtwork */; };
+		7EC085BF15B4FF7500F2CA31 /* icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EC085BC15B4FF7500F2CA31 /* icon-72.png */; };
+		7EC085C015B4FF7500F2CA31 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EC085BD15B4FF7500F2CA31 /* icon.png */; };
+		7EC085C115B4FF7500F2CA31 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EC085BE15B4FF7500F2CA31 /* icon@2x.png */; };
+		7EC085C415B5006B00F2CA31 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EC085C215B5006B00F2CA31 /* Default.png */; };
+		7EC085C515B5006B00F2CA31 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EC085C315B5006B00F2CA31 /* Default@2x.png */; };
+		7EC085C815B5014F00F2CA31 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC085C715B5014F00F2CA31 /* SettingsViewController.m */; };
+		7EC085CA15B5031F00F2CA31 /* SettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EC085C915B5031F00F2CA31 /* SettingsView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +109,15 @@
 		7E78DF3315B22D490082A66A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		7E78DF4F15B22DC90082A66A /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		7E78DF5115B230250082A66A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		7EC085B715B4FF2400F2CA31 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
+		7EC085BC15B4FF7500F2CA31 /* icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-72.png"; sourceTree = "<group>"; };
+		7EC085BD15B4FF7500F2CA31 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		7EC085BE15B4FF7500F2CA31 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
+		7EC085C215B5006B00F2CA31 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		7EC085C315B5006B00F2CA31 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		7EC085C615B5014F00F2CA31 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		7EC085C715B5014F00F2CA31 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		7EC085C915B5031F00F2CA31 /* SettingsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +212,8 @@
 				7E78DF2A15B22D490082A66A /* Supporting Files */,
 				7E3CBDAF15B23EF0004986C4 /* WaypointListViewController.h */,
 				7E3CBDB015B23EF0004986C4 /* WaypointListViewController.m */,
+				7EC085C615B5014F00F2CA31 /* SettingsViewController.h */,
+				7EC085C715B5014F00F2CA31 /* SettingsViewController.m */,
 			);
 			path = Haunt;
 			sourceTree = "<group>";
@@ -213,8 +232,15 @@
 		7E78DF4E15B22DB50082A66A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7EC085C215B5006B00F2CA31 /* Default.png */,
+				7EC085C315B5006B00F2CA31 /* Default@2x.png */,
+				7EC085BC15B4FF7500F2CA31 /* icon-72.png */,
+				7EC085BD15B4FF7500F2CA31 /* icon.png */,
+				7EC085BE15B4FF7500F2CA31 /* icon@2x.png */,
+				7EC085B715B4FF2400F2CA31 /* iTunesArtwork */,
 				7E78DF4F15B22DC90082A66A /* MainWindow.xib */,
 				7E3CBDB215B23EFD004986C4 /* WaypointListView.xib */,
+				7EC085C915B5031F00F2CA31 /* SettingsView.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -317,6 +343,13 @@
 				7E78DF2E15B22D490082A66A /* InfoPlist.strings in Resources */,
 				7E78DF5015B22DC90082A66A /* MainWindow.xib in Resources */,
 				7E3CBDB315B23EFD004986C4 /* WaypointListView.xib in Resources */,
+				7EC085BB15B4FF2400F2CA31 /* iTunesArtwork in Resources */,
+				7EC085BF15B4FF7500F2CA31 /* icon-72.png in Resources */,
+				7EC085C015B4FF7500F2CA31 /* icon.png in Resources */,
+				7EC085C115B4FF7500F2CA31 /* icon@2x.png in Resources */,
+				7EC085C415B5006B00F2CA31 /* Default.png in Resources */,
+				7EC085C515B5006B00F2CA31 /* Default@2x.png in Resources */,
+				7EC085CA15B5031F00F2CA31 /* SettingsView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -331,6 +364,7 @@
 				7E78DF3415B22D490082A66A /* AppDelegate.m in Sources */,
 				7E3CBDAE15B23E4C004986C4 /* Waypoint.m in Sources */,
 				7E3CBDB115B23EF0004986C4 /* WaypointListViewController.m in Sources */,
+				7EC085C815B5014F00F2CA31 /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,6 +10,6 @@
 
 @implementation Waypoint
 
-@synthesize waypointId, lat, lng;
+@synthesize waypointId, lat, lng, measuredAt;
 
 @end

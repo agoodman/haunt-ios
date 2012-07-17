@@ -20,8 +20,7 @@
 
 - (void)refreshWaypoints
 {
-    NSString* tToken = @"abc123";
-    [[RKObjectManager sharedManager] loadObjectsAtResourcePath:[NSString stringWithFormat:@"/devices/%@/waypoints",tToken] delegate:self];
+    [[RKObjectManager sharedManager] loadObjectsAtResourcePath:@"/waypoints" delegate:self];
 }
 
 #pragma mark -
@@ -35,6 +34,15 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshWaypoints)];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshWaypoints) name:@"WaypointCreated" object:nil];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    if( waypoints==nil ) {
+        [self refreshWaypoints];
+    }
 }
 
 - (void)viewDidUnload
@@ -72,6 +80,9 @@
     
     Waypoint* tWaypoint = [waypoints objectAtIndex:indexPath.row];
     cell.textLabel.text = [NSString stringWithFormat:@"%2.6f, %2.6f",[tWaypoint.lat floatValue],[tWaypoint.lng floatValue]];
+    NSDateFormatter* tFormat = [NSDateFormatter new];
+    tFormat.dateStyle = NSDateFormatterShortStyle;
+    cell.detailTextLabel.text = [tFormat stringFromDate:tWaypoint.measuredAt];
     
     return cell;
 }
