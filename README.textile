@@ -1,0 +1,11 @@
+h1. Overview
+
+Looking for someone to carpool with? Let us help you find someone. All we need to do is Haunt you for a week. :) 
+
+Haunt runs quietly in the background on your device, follows you wherever you go, and attempts to analyze your commuting patterns. It periodically shares your location information with a server (anonymously). 
+
+When the system finds someone whose commute patterns are similar to yours, it will notify both of you, giving you the choice to share your contact info. If both agree to share, the app makes the connection. You take it from there!
+
+h1. What's With The Weird Name?
+
+Location-based services are kinda creepy. Even when we're not sharing personally identifiable information, it's still a little stalker-ish to have location information stored on a remote server. We decided that the name of this app should make light of the situation by being overtly creepy. We also like the notion that an app can haunt you, but in a good way.
