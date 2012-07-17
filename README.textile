@@ -6,6 +6,22 @@ Haunt runs quietly in the background on your device, follows you wherever you go
 
 When the system finds someone whose commute patterns are similar to yours, it will notify both of you, giving you the choice to share your contact info. If both agree to share, the app makes the connection. You take it from there!
 
-h1. What's With The Weird Name?
+h2. What's With The Weird Name?
 
 Location-based services are kinda creepy. Even when we're not sharing personally identifiable information, it's still a little stalker-ish to have location information stored on a remote server. We decided that the name of this app should make light of the situation by being overtly creepy. We also like the notion that an app can haunt you, but in a good way.
+
+h2. Origin
+
+The concept grew out of a conversation with a friend, who lives in a rural area and has no easy way of meeting people who live nearby and commute to similar places.
+
+Coincidentally, the same day this conversation occurred, I was looking for a good example app to demonstrate web service integration into an iOS app. It was a natural fit.
+
+h1. How It Works
+
+On launch, Haunt establishes a geofence around the device's current position and registers with the server by posting a waypoint.
+
+When the device moves more than a fixed distance away from the last waypoint, a new waypoint is posted and the geofence region is recentered on the new waypoint.
+
+There is no user interaction required. Everything is done in the background. The only use case is enable/disable geofencing, for which we'll introduce a "haunt/exorcise" switch in the UI.
+
+Currently, the waypoint posting method triggers every time the device crosses a geofence boundary. It will eventually be updated to only send the data to the server once or twice a day.
