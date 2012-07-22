@@ -45,17 +45,48 @@
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"Haunted"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
-        [self postWaypoint:tRegion.center];
+        [self logWaypoint:tRegion.center];
     }
 }
 
-- (void)postWaypoint:(CLLocationCoordinate2D)aCoordinate
+- (void)logWaypoint:(CLLocationCoordinate2D)aCoordinate
 {
-    Waypoint* tWaypoint = [Waypoint new];
-    tWaypoint.lat = [NSNumber numberWithFloat:aCoordinate.latitude];
-    tWaypoint.lng = [NSNumber numberWithFloat:aCoordinate.longitude];
-    tWaypoint.measuredAt = [NSDate date];
-    [[RKObjectManager sharedManager] postObject:tWaypoint delegate:self];
+    NSLog(@"logWaypoint");
+    NSUserDefaults* tDef = [NSUserDefaults standardUserDefaults];
+    NSMutableArray* tLats = [NSMutableArray arrayWithArray:[tDef objectForKey:@"Lats"]];
+    NSMutableArray* tLngs = [NSMutableArray arrayWithArray:[tDef objectForKey:@"Lngs"]];
+    NSMutableArray* tTimes = [NSMutableArray arrayWithArray:[tDef objectForKey:@"Times"]];
+    [tLats addObject:[NSNumber numberWithFloat:aCoordinate.latitude]];
+    [tLngs addObject:[NSNumber numberWithFloat:aCoordinate.longitude]];
+    [tTimes addObject:[NSDate date]];
+    [tDef setObject:tLats forKey:@"Lats"];
+    [tDef setObject:tLngs forKey:@"Lngs"];
+    [tDef setObject:tTimes forKey:@"Times"];
+    [tDef synchronize];
+    
+    if( tLats.count==25 ) {
+        [self postWaypoints];
+    }
+}
+
+- (void)postWaypoints
+{
+    NSLog(@"postWaypoints");
+    NSUserDefaults* tDef = [NSUserDefaults standardUserDefaults];
+    NSArray* tLats = [tDef objectForKey:@"Lats"];
+    NSArray* tLngs = [tDef objectForKey:@"Lngs"];
+    NSArray* tTimes = [tDef objectForKey:@"Times"];
+    
+    for (int k=0,K=tLats.count;k<K;k++) {
+        Waypoint* tWaypoint = [Waypoint new];
+        tWaypoint.lat = [tLats objectAtIndex:k];
+        tWaypoint.lng = [tLngs objectAtIndex:k];
+        tWaypoint.measuredAt = [tTimes objectAtIndex:k];
+        [[RKObjectManager sharedManager] postObject:tWaypoint delegate:self];
+    }
+    [tDef removeObjectForKey:@"Lats"];
+    [tDef removeObjectForKey:@"Lngs"];
+    [tDef removeObjectForKey:@"Times"];
 }
 
 - (void)alertLocationRequired
