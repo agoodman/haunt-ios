@@ -32,6 +32,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    hauntEnabled.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"Haunted"];
 
     [hauntEnabled addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
 }
@@ -44,7 +46,7 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return YES;//(interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 @end

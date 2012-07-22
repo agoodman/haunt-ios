@@ -41,6 +41,9 @@
         CLRegion* tRegion = [[CLRegion alloc] initCircularRegionWithCenter:self.locationManager.location.coordinate     radius:800 identifier:@"Haunt"];
         NSLog(@"establishGeoFence: %@",tRegion);
         [self.locationManager startMonitoringForRegion:tRegion desiredAccuracy:50];
+
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"Haunted"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
         
         [self postWaypoint:tRegion.center];
     }
@@ -70,7 +73,11 @@
     self.locationManager = [CLLocationManager new];
     self.locationManager.delegate = self;
     
-    [self configureLocationManager];
+    if( [[NSUserDefaults standardUserDefaults] objectForKey:@"Haunted"]==nil ||
+       [[NSUserDefaults standardUserDefaults] boolForKey:@"Haunted"] ) 
+    {
+        [self configureLocationManager];
+    }
 }
 
 - (void)initObjectManagerWithToken:(NSString*)aToken
@@ -112,6 +119,9 @@
     for (CLRegion* region in self.locationManager.monitoredRegions) {
         [self.locationManager stopMonitoringForRegion:region];
     }
+    
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"Haunted"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 #pragma mark - CLLocationManagerDelegate
