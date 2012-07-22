@@ -13,7 +13,7 @@
 @implementation AppDelegate
 
 @synthesize window = _window;
-@synthesize tabBarController = _tabBarController;
+@synthesize settingsViewController = _settingsViewController;
 @synthesize locationManager = _locationManager;
 @synthesize token = _token;
 
@@ -26,11 +26,6 @@
         if( self.locationManager.monitoredRegions.count==0 ) {
             // not currently monitoring; establish region
             [self establishGeoFence];
-        }else{
-            NSLog(@"region already configured");
-            async_main(^{
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"WaypointCreated" object:nil];
-            });
         }
     }else{
         [self alertLocationRequired];
@@ -114,7 +109,9 @@
 
 - (void)exorcise
 {
-    [self.locationManager stopMonitoringForRegion:[self.locationManager.monitoredRegions anyObject]];
+    for (CLRegion* region in self.locationManager.monitoredRegions) {
+        [self.locationManager stopMonitoringForRegion:region];
+    }
 }
 
 #pragma mark - CLLocationManagerDelegate
@@ -122,7 +119,7 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
     NSLog(@"didUpdateToLocation: %@",newLocation);
-    [manager stopUpdatingLocation];
+    [manager stopMonitoringSignificantLocationChanges];
     [self establishGeoFence];
 }
 
@@ -164,7 +161,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(haunt) name:@"Haunt" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(exorcise) name:@"Exorcise" object:nil];
     
-    [self.window addSubview:self.tabBarController.view];
+    [self.window addSubview:self.settingsViewController.view];
     [self.window makeKeyAndVisible];
     return YES;
 }

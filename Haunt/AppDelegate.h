@@ -14,7 +14,7 @@
 
 @property (strong, nonatomic) IBOutlet UIWindow *window;
 
-@property (strong, nonatomic) IBOutlet UITabBarController *tabBarController;
+@property (strong, nonatomic) IBOutlet UIViewController *settingsViewController;
 
 @property (strong, nonatomic) CLLocationManager* locationManager;
 
