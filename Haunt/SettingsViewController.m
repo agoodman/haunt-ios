@@ -18,10 +18,14 @@
 {
     if( hauntEnabled.on ) {
         async_main(^{
+            progressView.hidden = NO;
+            captionView.hidden = NO;
             [[NSNotificationCenter defaultCenter] postNotificationName:@"Haunt" object:nil];
         });
     }else{
         async_main(^{
+            progressView.hidden = YES;
+            captionView.hidden = YES;
             [[NSNotificationCenter defaultCenter] postNotificationName:@"Exorcise" object:nil];
         });
     }
@@ -33,9 +37,30 @@
 {
     [super viewDidLoad];
     
-    hauntEnabled.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"Haunted"];
+    hauntEnabled.on = ![[NSUserDefaults standardUserDefaults] boolForKey:@"Exorcised"];
 
     [hauntEnabled addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    NSUserDefaults* tDef = [NSUserDefaults standardUserDefaults];
+    float tTotal = [tDef floatForKey:@"TotalTime"];
+    if( isnan(tTotal) ) tTotal = 0.03333;
+    NSDate* tStart = [tDef objectForKey:@"StartDate"];
+    if( tStart ) {
+        float tDiff = [[NSDate date] timeIntervalSinceDate:tStart];
+        tTotal += tDiff;
+    }
+    
+    float tMax = 30*86500;
+    float tProgress = tTotal / tMax;
+    if( tProgress<0 ) tProgress = 0;
+    if( tProgress>1 ) tProgress = 1;
+    
+    progressView.progress = tProgress;
 }
 
 - (void)viewDidUnload
@@ -46,7 +71,8 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return YES;//(interfaceOrientation == UIInterfaceOrientationPortrait);
+    NSRange tRange = [[UIDevice currentDevice].model rangeOfString:@"iPad"];
+    return UIInterfaceOrientationIsPortrait(interfaceOrientation) || tRange.location!=NSNotFound;
 }
 
 @end

@@ -42,7 +42,7 @@
         NSLog(@"establishGeoFence: %@",tRegion);
         [self.locationManager startMonitoringForRegion:tRegion desiredAccuracy:50];
 
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"Haunted"];
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"Exorcised"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
         [self logWaypoint:tRegion.center];
@@ -104,9 +104,7 @@
     self.locationManager = [CLLocationManager new];
     self.locationManager.delegate = self;
     
-    if( [[NSUserDefaults standardUserDefaults] objectForKey:@"Haunted"]==nil ||
-       [[NSUserDefaults standardUserDefaults] boolForKey:@"Haunted"] ) 
-    {
+    if( ![[NSUserDefaults standardUserDefaults] objectForKey:@"Exorcised"] ) {
         [self configureLocationManager];
     }
 }
@@ -142,6 +140,8 @@
 
 - (void)haunt
 {
+    [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"StartDate"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     [self establishGeoFence];
 }
 
@@ -151,8 +151,17 @@
         [self.locationManager stopMonitoringForRegion:region];
     }
     
-    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"Haunted"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    NSUserDefaults* tDef = [NSUserDefaults standardUserDefaults];
+
+    float tTotal = [tDef floatForKey:@"TotalTime"];
+    NSDate* tStart = [tDef objectForKey:@"StartDate"];
+    float tDiff = [[NSDate date] timeIntervalSinceDate:tStart];
+    tTotal += tDiff;
+    
+    [tDef setBool:YES forKey:@"Exorcised"];
+    [tDef setFloat:tTotal forKey:@"TotalTime"];
+    [tDef removeObjectForKey:@"StartDate"];
+    [tDef synchronize];
 }
 
 #pragma mark - CLLocationManagerDelegate
@@ -251,9 +260,10 @@
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
     NSString* tRaw = [deviceToken description];
-    self.token = [[[tRaw stringByReplacingOccurrencesOfString:@"<" withString:@""] stringByReplacingOccurrencesOfString:@">" withString:@""] stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSString* tToken = [[[tRaw stringByReplacingOccurrencesOfString:@"<" withString:@""] stringByReplacingOccurrencesOfString:@">" withString:@""] stringByReplacingOccurrencesOfString:@" " withString:@""];
     
     async_main(^{
+        self.token = tToken;
         [self tokenAssigned];
     });
 }
@@ -261,8 +271,8 @@
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
 {
     if( [error code]==3010 ) {
-        self.token = @"abc123";
         async_main(^{
+            self.token = @"abc123";
             [self tokenAssigned];
         });
     }else{

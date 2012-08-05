@@ -11,6 +11,8 @@
 @interface SettingsViewController : UIViewController {
     
     IBOutlet UISwitch* hauntEnabled;
+    IBOutlet UIProgressView* progressView;
+    IBOutlet UITextView* captionView;
     
 }
 

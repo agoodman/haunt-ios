@@ -78,7 +78,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
     }
     
-    Waypoint* tWaypoint = [waypoints objectAtIndex:indexPath.row];
+    Waypoint* tWaypoint = [self.waypoints objectAtIndex:indexPath.row];
     cell.textLabel.text = [NSString stringWithFormat:@"%2.6f, %2.6f",[tWaypoint.lat floatValue],[tWaypoint.lng floatValue]];
     NSDateFormatter* tFormat = [NSDateFormatter new];
     tFormat.dateStyle = NSDateFormatterShortStyle;
