@@ -52,19 +52,15 @@
 - (void)logWaypoint:(CLLocationCoordinate2D)aCoordinate
 {
     NSLog(@"logWaypoint");
-    NSUserDefaults* tDef = [NSUserDefaults standardUserDefaults];
-    NSMutableArray* tLats = [NSMutableArray arrayWithArray:[tDef objectForKey:@"Lats"]];
-    NSMutableArray* tLngs = [NSMutableArray arrayWithArray:[tDef objectForKey:@"Lngs"]];
-    NSMutableArray* tTimes = [NSMutableArray arrayWithArray:[tDef objectForKey:@"Times"]];
-    [tLats addObject:[NSNumber numberWithFloat:aCoordinate.latitude]];
-    [tLngs addObject:[NSNumber numberWithFloat:aCoordinate.longitude]];
-    [tTimes addObject:[NSDate date]];
-    [tDef setObject:tLats forKey:@"Lats"];
-    [tDef setObject:tLngs forKey:@"Lngs"];
-    [tDef setObject:tTimes forKey:@"Times"];
-    [tDef synchronize];
+    Waypoint* tWaypoint = [Waypoint object];
+    tWaypoint.lat = [NSNumber numberWithFloat:aCoordinate.latitude];
+    tWaypoint.lng = [NSNumber numberWithFloat:aCoordinate.longitude];
+    tWaypoint.measuredAt = [NSDate date];
     
-    if( tLats.count==25 ) {
+    NSFetchRequest* tReq = [Waypoint fetchRequest];
+    tReq.predicate = [NSPredicate predicateWithFormat:@"waypointId = %@",[NSNumber numberWithInt:0]];
+    int tCount = [Waypoint countOfObjectsWithFetchRequest:tReq];
+    if( tCount>=5 ) {
         [self postWaypoints];
     }
 }
@@ -72,6 +68,23 @@
 - (void)postWaypoints
 {
     NSLog(@"postWaypoints");
+    
+    NSArray* tUnsaved = [Waypoint findAllWithPredicate:[NSPredicate predicateWithFormat:@"waypointId = %@",[NSNumber numberWithInt:0]]];
+    RKObjectManager* tMgr = [RKObjectManager sharedManager];
+    for (Waypoint* w in tUnsaved) {
+//        Waypoint* tWaypoint = [Waypoint object];
+//        tWaypoint.lat = w.lat;
+//        tWaypoint.lng = w.lng;
+//        tWaypoint.measuredAt = w.measuredAt;
+//        [tMgr postObject:tWaypoint delegate:self];
+        [tMgr postObject:w delegate:self];
+//        [w deleteEntity];
+    }
+}
+
+- (void)postOldWaypoints
+{
+    NSLog(@"postOldWaypoints");
     NSUserDefaults* tDef = [NSUserDefaults standardUserDefaults];
     NSArray* tLats = [tDef objectForKey:@"Lats"];
     NSArray* tLngs = [tDef objectForKey:@"Lngs"];
@@ -100,6 +113,9 @@
 {
     [self initObjectManagerWithToken:self.token];
     [self initObjectMappings];
+
+    // flush waypoints in deprecated preferences store
+    [self postOldWaypoints];
     
     self.locationManager = [CLLocationManager new];
     self.locationManager.delegate = self;
@@ -115,6 +131,8 @@
 //    NSString* tHost = @"http://local:3000";
     NSString* tPath = [NSString stringWithFormat:@"%@/devices/%@",tHost,aToken];
 	RKObjectManager* tMgr = [RKObjectManager objectManagerWithBaseURLString:tPath];
+    tMgr.objectStore = [RKManagedObjectStore objectStoreWithStoreFilename:@"Haunt.sqlite3"];
+	tMgr.client.requestQueue.showsNetworkActivityIndicatorWhenBusy = YES;
     tMgr.serializationMIMEType = RKMIMETypeJSON;
 }
 
@@ -122,10 +140,12 @@
 {
     RKObjectManager* tMgr = [RKObjectManager sharedManager];
     
-    RKObjectMapping* tMapping = [RKObjectMapping mappingForClass:[Waypoint class]];
+    RKManagedObjectMapping* tMapping = [RKManagedObjectMapping mappingForClass:[Waypoint class] inManagedObjectStore:tMgr.objectStore];
+    [tMapping mapKeyPath:@"id" toAttribute:@"waypointId"];
     [tMapping mapKeyPath:@"lat" toAttribute:@"lat"];
     [tMapping mapKeyPath:@"lng" toAttribute:@"lng"];
     [tMapping mapKeyPath:@"measured_at" toAttribute:@"measuredAt"];
+    tMapping.primaryKeyAttribute = @"waypointId";
     [tMgr.mappingProvider setMapping:tMapping forKeyPath:@"waypoint"];
     
     RKObjectMapping* tSerial = [RKObjectMapping mappingForClass:[Waypoint class]];
@@ -224,8 +244,7 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    [[RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread save:nil];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -291,10 +310,12 @@
 
 - (void)objectLoader:(RKObjectLoader *)objectLoader didLoadObject:(id)object
 {
-    NSLog(@"waypoint posted: %@",object);
-    async_main(^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"WaypointCreated" object:nil];
-    });
+    if( [object isKindOfClass:[Waypoint class]] ) {
+        NSLog(@"waypoint posted: %@",(Waypoint*)object);
+        async_main(^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"WaypointCreated" object:nil];
+        });
+    }
 }
 
 @end

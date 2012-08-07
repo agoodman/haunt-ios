@@ -8,12 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Waypoint : NSObject {
+@interface Waypoint : NSManagedObject {
     
-    NSNumber* waypointId;
-    NSNumber* lat;
-    NSNumber* lng;
-    NSDate* measuredAt;
+//    NSNumber* waypointId;
+//    NSNumber* lat;
+//    NSNumber* lng;
+//    NSDate* measuredAt;
     
 }
 

@@ -10,6 +10,11 @@
 
 @implementation Waypoint
 
-@synthesize waypointId, lat, lng, measuredAt;
+@dynamic waypointId, lat, lng, measuredAt;
+
+- (NSString*)description
+{
+    return [NSString stringWithFormat:@"lat: %3.6f, lng: %3.6f, measuredAt: %@, waypointId: %d",[self.lat floatValue],[self.lng floatValue],self.measuredAt,[self.waypointId intValue]];
+}
 
 @end

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1487" systemVersion="12A269" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Waypoint" representedClassName="Waypoint" syncable="YES">
+        <attribute name="lat" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="lng" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="measuredAt" attributeType="Date" syncable="YES"/>
+        <attribute name="waypointId" optional="YES" attributeType="Integer 64" defaultValueString="0" indexed="YES" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Waypoint" positionX="160" positionY="192" width="128" height="105"/>
+    </elements>
+</model>
